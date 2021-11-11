@@ -10,7 +10,10 @@ fs.readdir(dirPath,
     else {
       fs.stat(`${__dirname}/project-dist/bundle.css`, function(err) {
         if(err == null) {
-          fs.unlinkSync(`${__dirname}/project-dist/bundle.css`);
+          fs.unlink(`${__dirname}/project-dist/bundle.css`, function(err) {
+            if (err)
+              console.log(err);
+          });
         }
       });
       files.forEach(file => {
